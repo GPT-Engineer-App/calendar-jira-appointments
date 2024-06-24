@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
-import axios from "axios";
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    // Fetch Outlook calendar events
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get("/api/outlook/events");
-        setEvents(response.data);
-      } catch (error) {
-        console.error("Error fetching calendar events:", error);
-      }
-    };
+    // Mock data for Outlook calendar events
+    const mockEvents = [
+      {
+        id: "1",
+        subject: "Team Meeting",
+        start: { dateTime: new Date().toISOString() },
+        end: { dateTime: new Date(new Date().getTime() + 60 * 60 * 1000).toISOString() },
+      },
+      {
+        id: "2",
+        subject: "Project Deadline",
+        start: { dateTime: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString() },
+        end: { dateTime: new Date(new Date().getTime() + 25 * 60 * 60 * 1000).toISOString() },
+      },
+      {
+        id: "3",
+        subject: "Client Call",
+        start: { dateTime: new Date(new Date().getTime() + 48 * 60 * 60 * 1000).toISOString() },
+        end: { dateTime: new Date(new Date().getTime() + 49 * 60 * 60 * 1000).toISOString() },
+      },
+    ];
 
-    fetchEvents();
+    setEvents(mockEvents);
   }, []);
 
   return (
