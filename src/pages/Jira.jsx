@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
-import axios from "axios";
+
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const Jira = () => {
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
-    // Fetch JIRA tickets
-    const fetchTickets = async () => {
-      try {
-        const response = await axios.get("/api/jira/tickets");
-        setTickets(response.data);
-      } catch (error) {
-        console.error("Error fetching JIRA tickets:", error);
-      }
-    };
+    // Mock data for JIRA tickets
+    const mockTickets = [
+      { id: "1", summary: "Fix login bug", storyPoints: 3 },
+      { id: "2", summary: "Add new feature", storyPoints: 5 },
+      { id: "3", summary: "Improve performance", storyPoints: 8 },
+    ];
 
-    fetchTickets();
+    setTickets(mockTickets);
   }, []);
 
   const onDragEnd = (result) => {
